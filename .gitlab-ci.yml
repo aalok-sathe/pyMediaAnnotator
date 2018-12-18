@@ -1,0 +1,44 @@
+variables:
+    TWINE_USERNAME: SECURE
+    TWINE_PASSWORD: SECURE
+
+stages:
+    - deploy
+    # - test
+
+deploy:
+    image: python:3.6
+    stage: deploy
+    before_script:
+        - python3 -m pip install -U setuptools wheel twine
+    script:
+        - python3 setup.py sdist bdist_wheel
+        - twine upload dist/*.tar.gz
+        - twine upload dist/*.whl
+    artifacts:
+        paths:
+            - build/
+            - dist/
+            - cfd_reader.egg-info/
+    # only:
+    # - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
+    # - /^\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
+    environment:
+        name: dev
+
+# test:
+#     image: python:3.6
+#     stage: test
+#     #before_script:
+#     #    - python3 -m pip install -U setuptools wheel twine
+#     script:
+#         - mkdir ~/.cfd-faces && cd ~/.cfd-faces && mkdir images
+#         - touch data.csv images.pickle
+#         - python3 -m pip install cfd-reader
+#         - python3 -c "import cfd_reader"
+#     only:
+#     - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
+#     - /^\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
+#     - /^\d+\.\d+\.\d+\.\d+([abc]\d*)?$/ # Developmental tag
+#     environment:
+#         name: dev
