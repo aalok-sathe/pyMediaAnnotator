@@ -46,6 +46,7 @@ pages:
     only:
     - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
     - /^\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
+    - /^test.*\d+.*pages$/
 # test:
 #     image: python:3.6
 #     stage: test
