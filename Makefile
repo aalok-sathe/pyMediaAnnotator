@@ -6,4 +6,4 @@ build:
 		python3 setup.py sdist bdist_wheel
 
 clean:
-		rm -rf build cfd_reader.egg-info dist
+		rm -rf build *.egg-info dist
