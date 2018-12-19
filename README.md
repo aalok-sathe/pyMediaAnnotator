@@ -39,7 +39,7 @@ you could skip installing pyGTK:
 - Clone the repository
     - `git clone https://gitlab.com/aalok-sathe/pyMediaAnnotator.git`
 - Make sure to have the necessary prerequisites:
-    - `pyGTK/pyGTK/pyGObject`: Python GTK bindings
+    - `pyGTK/pyGObject`: Python GTK bindings
     - `vlc`, `python-vlc`: the VLC media player and Python bindings for `libvlc`
 - Create Python package and install:
     - `make build`
