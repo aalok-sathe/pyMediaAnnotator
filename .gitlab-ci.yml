@@ -40,7 +40,6 @@ pages:
         - build
     script:
         - cd public
-        - cat build.svg >> index.html
     artifacts:
         paths:
             - public/
