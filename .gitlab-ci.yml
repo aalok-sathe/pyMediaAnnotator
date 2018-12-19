@@ -15,11 +15,11 @@ build:
     script:
         - FAIL=0
         - python3 setup.py sdist bdist_wheel
-        - twine upload -u TWINE_USERNAME -p TWINE_PASSWORD dist/*.tar.gz || FAIL=1
-        - twine upload -u TWINE_USERNAME -p TWINE_PASSWORD dist/*.whl || FAIL=1
+        - twine upload --repository-url https://pypi.org dist/*.tar.gz || FAIL=1
+        - twine upload --repository-url https://pypi.org dist/*.whl || FAIL=1
     after_script:
         - python3 -m pip install -U anybadge
-        - if [ $FAIL -eq 0 ]; then anybadge --label=pipeline --value=passing --file=build.svg passing=green failing=red; else anybadge --label=pipeline --value=failing --file=build.svg passing=green failing=red; fi
+        - if [ $FAIL -eq 0 ]; then echo "FAILED JOB" && anybadge --label=pipeline --value=passing --file=build.svg passing=green failing=red; else anybadge --label=pipeline --value=failing --file=build.svg passing=green failing=red; fi
         - mkdir public; mv build.svg public/build.svg
     artifacts:
         paths:
