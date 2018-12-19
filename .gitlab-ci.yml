@@ -4,9 +4,10 @@ variables:
 
 stages:
     - deploy
+    - status
     # - test
 
-deploy:
+build:
     image: python:3.6
     stage: deploy
     before_script:
@@ -19,20 +20,30 @@ deploy:
     after_script:
         - python3 -m pip install -U anybadge
         - if [$FAIL -eq 0]; then anybadge --label=pipeline --value=passing --file=build.svg passing=green failing=red; else anybadge --label=pipeline --value=failing --file=build.svg passing=green failing=red; fi
+        - mkdir public; mv build.svg public/build.svg
     artifacts:
         paths:
-            - build.svg
             - build/
             - dist/
             - cfd_reader.egg-info/
-    pages:
-        build.svg
     only:
     - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
     - /^\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
     environment:
         name: dev
 
+pages:
+    stage: status
+    dependencies:
+        - build
+    script:
+        - echo
+    artifacts:
+        paths:
+            - public/
+    only:
+    - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
+    - /^\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
 # test:
 #     image: python:3.6
 #     stage: test
