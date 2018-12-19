@@ -23,6 +23,7 @@ build:
         - mkdir public; mv build.svg public/build.svg
     artifacts:
         paths:
+            - public/
             - build/
             - dist/
             - cfd_reader.egg-info/
