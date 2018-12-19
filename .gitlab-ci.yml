@@ -12,14 +12,21 @@ deploy:
     before_script:
         - python3 -m pip install -U setuptools wheel twine
     script:
+        - FAIL=0
         - python3 setup.py sdist bdist_wheel
-        - twine upload dist/*.tar.gz
-        - twine upload dist/*.whl
+        - twine upload dist/*.tar.gz || FAIL=1
+        - twine upload dist/*.whl || FAIL=1
+    after_script:
+        - python3 -m pip install -U anybadge
+        - if [$FAIL -eq 0]; then anybadge --label=pipeline --value=passing --file=build.svg passing=green failing=red; else anybadge --label=pipeline --value=failing --file=build.svg passing=green failing=red; fi
     artifacts:
         paths:
+            - build.svg
             - build/
             - dist/
             - cfd_reader.egg-info/
+    pages:
+        build.svg
     only:
     - /^v\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
     - /^\d+\.\d+\.\d+([abc]\d*)?$/  # PEP-440 compliant version (tags)
