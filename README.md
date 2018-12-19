@@ -22,26 +22,28 @@
 - Save and resume existing annotation
 
 ### Installation:
-- Clone the repository (recommended: ssh)
-    - ssh: `git clone git@gitlab.com:aalok-sathe/pyMediaAnnotator.git`
-    - https: `git clone https://gitlab.com/aalok-sathe/pyMediaAnnotator.git`
-- Make sure to have the necessary prerequisites:
-    - `pyGTK/pyGTK/pyGObject`: Python GTK bindings
-    - `vlc`, `python-vlc`: the VLC media player and Python bindings for `libvlc`
-- Use makefile to create Python package and install:
-    - `make build`
-    - `python3 setup.py install [--user]`
+- From source:
+    - Clone the repository (recommended: ssh)
+        - ssh: `git clone git@gitlab.com:aalok-sathe/pyMediaAnnotator.git`
+        - https: `git clone https://gitlab.com/aalok-sathe/pyMediaAnnotator.git`
+    - Make sure to have the necessary prerequisites:
+        - `pyGTK/pyGTK/pyGObject`: Python GTK bindings
+        - `vlc`, `python-vlc`: the VLC media player and Python bindings for `libvlc`
+    - Use makefile to create Python package and install:
+        - `make build`
+        - `python3 setup.py install`
+- From pyPI
+    - Using `pip`:
+        - `python3 -m pip install --upgrade [--user] pyMediaAnnotator`
+        - The `--user` flag installs it locally, without needing `root`
 
 ### Usage:
 - Start application with the executable: `./pyMediaAnnotator`
-- Screenshot: ![example usage to annotate the presence of laugh track in an episode of Friends](scrsht-friends.png?raw=true Screenshot")
+- Screenshot (v0.1.3): example usage to annotate the laugh track in an episode of Friends ![](scrsht-friends.png?raw=true Screenshot")
 
 ### Compatibility:
-- GNU/Linux:
+- GNU/Linux, \*NIX [recommended]:
     - Expected to run with proper prerequisites
-    - Debian/Ubuntu:
-        - Tested on Ubuntu 16.04
-- MacOS:
-    - Not tested, however, expected to work with proper GTK support
-- Windows:
-    - Not tested, not expected to work; but you are welcome to try
+    - Tested on Ubuntu 16.04
+- Any other system:
+    - Not tested, however, should theoretically work long as you are able to provide pyGTK and libvlc support
