@@ -46,8 +46,8 @@ you could skip installing pyGTK:
     - `python3 setup.py install`
 
 ### Usage:
-- Start application with the executable: `./pyMediaAnnotator`
-- Screenshot (v0.1.2): example usage to annotate the laugh track in an episode of Friends ![example usage](scrsht-friends.png?raw=true Screenshot")
+    $ pyMediaAnnotator
+Screenshot (v0.1.2): example usage to annotate the laugh track in an episode of Friends ![example usage](scrsht-friends.png?raw=true Screenshot")
 
 ### Compatibility:
 - GNU/Linux, \*NIX [recommended]:
