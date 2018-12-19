@@ -1,8 +1,8 @@
 ## pyMediaAnnotator
-#### A GTK+ and vlc based application for annotating video and audio files for classification tasks
 
 [![pipeline status](https://aalok-sathe.gitlab.io/pyMediaAnnotator/build.svg)](https://gitlab.com/aalok-sathe/pyMediaAnnotator/commits)
 
+#### A GTK+ and vlc based application for annotating video and audio files for classification tasks
 
 ### Features:
 - Add text annotations time-locked to content in media file
