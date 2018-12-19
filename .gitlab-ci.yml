@@ -39,7 +39,8 @@ pages:
     dependencies:
         - build
     script:
-        - echo
+        - cd public
+        - cat build.svg >> index.html
     artifacts:
         paths:
             - public/
