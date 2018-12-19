@@ -7,7 +7,7 @@ with open("README.md", "r") as readme:
     long_description = readme.read()
 
 setup(name='pyMediaAnnotator',
-      version='0.1.5',
+      version='0.1.6',
       description='A pyGTK and vlc based application to hand-annotate audio '
                   'and video files for classification tasks',
       long_description=long_description,
@@ -21,7 +21,7 @@ setup(name='pyMediaAnnotator',
       python_requires='>=3.5',
       install_requires=['pyyaml>=3.12',
                         'python-vlc>=3.0.4106',
-                        'pyGTK>=2.24.2',
+                        # 'pyGTK>=2.24.0',
                         'pyGGI>=1.1.3'],
       classifiers=[
           'Development Status :: 1 - Planning',
