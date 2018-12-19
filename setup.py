@@ -17,7 +17,7 @@ setup(name='pyMediaAnnotator',
       author_email='aalok.sathe@richmond.edu',
       license='GPL-3',
       # packages=find_packages(),
-      scripts=['pyMediaAnnotator']
+      scripts=['pyMediaAnnotator'],
       python_requires='>=3.5',
       install_requires=['pyyaml>=3.12',
                         'python-vlc>=3.0.4106',
