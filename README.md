@@ -22,24 +22,32 @@
 - Save and resume existing annotation
 
 ### Installation:
-- From source:
-    - Clone the repository (recommended: ssh)
-        - ssh: `git clone git@gitlab.com:aalok-sathe/pyMediaAnnotator.git`
-        - https: `git clone https://gitlab.com/aalok-sathe/pyMediaAnnotator.git`
-    - Make sure to have the necessary prerequisites:
-        - `pyGTK/pyGTK/pyGObject`: Python GTK bindings
-        - `vlc`, `python-vlc`: the VLC media player and Python bindings for `libvlc`
-    - Use makefile to create Python package and install:
-        - `make build`
-        - `python3 setup.py install`
-- From pyPI
-    - Using `pip`:
-        - `python3 -m pip install --upgrade [--user] pyMediaAnnotator`
-        - The `--user` flag installs it locally, without needing `root`
+
+#### From pyPI using `pip`:
+    python3 -m pip install --upgrade [--user] pyMediaAnnotator
+
+The `--user` flag installs it locally
+without needing `root` (optional).
+
+If you are able to ensure the availability
+of GTK bindings from some other source,
+you could skip installing pyGTK:
+
+    python3 -m pip install --upgrade [--user] --no-deps pyMediaAnnotator
+
+#### From source
+- Clone the repository
+    - `git clone https://gitlab.com/aalok-sathe/pyMediaAnnotator.git`
+- Make sure to have the necessary prerequisites:
+    - `pyGTK/pyGTK/pyGObject`: Python GTK bindings
+    - `vlc`, `python-vlc`: the VLC media player and Python bindings for `libvlc`
+- Create Python package and install:
+    - `make build`
+    - `python3 setup.py install`
 
 ### Usage:
 - Start application with the executable: `./pyMediaAnnotator`
-- Screenshot (v0.1.3): example usage to annotate the laugh track in an episode of Friends ![](scrsht-friends.png?raw=true Screenshot")
+- Screenshot (v0.1.2): example usage to annotate the laugh track in an episode of Friends ![](scrsht-friends.png?raw=true Screenshot")
 
 ### Compatibility:
 - GNU/Linux, \*NIX [recommended]:
