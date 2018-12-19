@@ -4,7 +4,6 @@ variables:
     TWINE_REPOSITORY_URL: https://upload.pypi.org/legacy/
 
 stages:
-    - test
     - deploy
     - status
 
