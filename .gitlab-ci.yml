@@ -1,11 +1,31 @@
 variables:
     TWINE_USERNAME: SECURE
     TWINE_PASSWORD: SECURE
+    TWINE_REPOSITORY_URL: https://upload.pypi.org/legacy/
 
 stages:
+    - test
     - deploy
     - status
-    # - test
+
+test:
+    image: python:3.6
+    stage: test
+    before_script:
+        - python3 -m pip install -U setuptools wheel twine
+        - python3 -m pip install -U anybadge
+    script:
+        - python3 setup.py sdist bdist_wheel
+        - if twine upload dist/*.tar.gz && twine upload dist/*.whl; then echo "PASSED JOB" && anybadge --label=pipeline --value=passing --file=build.svg passing=green failing=red; else echo "FAILED JOB" && anybadge --label=pipeline --value=failing --file=build.svg passing=green failing=red; fi
+        - mkdir public; mv build.svg public/build.svg
+    artifacts:
+        paths:
+            - public/
+            - build/
+            - dist/
+            - cfd_reader.egg-info/
+    environment:
+        name: test
 
 build:
     image: python:3.6
@@ -15,7 +35,7 @@ build:
         - python3 -m pip install -U anybadge
     script:
         - python3 setup.py sdist bdist_wheel
-        - if twine upload --repository-url https://pypi.org dist/*.tar.gz && twine upload --repository-url https://pypi.org dist/*.whl; then echo "PASSED JOB" && anybadge --label=pipeline --value=passing --file=build.svg passing=green failing=red; else echo "FAILED JOB" && anybadge --label=pipeline --value=failing --file=build.svg passing=green failing=red; fi
+        - if twine upload dist/*.tar.gz && twine upload dist/*.whl; then echo "PASSED JOB" && anybadge --label=pipeline --value=passing --file=build.svg passing=green failing=red; else echo "FAILED JOB" && anybadge --label=pipeline --value=failing --file=build.svg passing=green failing=red; fi
         - mkdir public; mv build.svg public/build.svg
     artifacts:
         paths:
